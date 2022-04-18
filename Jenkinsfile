@@ -67,12 +67,12 @@ pipeline {
 
     stage('Build Backend NodeJS') {
         steps { 
-            dir("server") {
-              // Install the the dependency packages needed for the app  
-                bat 'npm install' 
-              // run the build   
-                //bat 'npm run build'
-            }
+            // dir("server") {
+            // Install the the dependency packages needed for the app  
+              bat 'npm install' 
+            // run the build   
+              //bat 'npm run build'
+            // }
         }    
     }  
     stage('SonarQube analysis Proj') {
@@ -101,9 +101,9 @@ pipeline {
     stage('Build docker for Backend') {
       steps {
         script {
-            dir('server') {
-                dockerImageBE = docker.build registry + "devops-sample-app-be" + ":$BUILD_NUMBER"
-            } 
+            // dir('server') {
+            dockerImageBE = docker.build registry + "devops-sample-app-be" + ":$BUILD_NUMBER"
+            // } 
         }
       }
     }  
