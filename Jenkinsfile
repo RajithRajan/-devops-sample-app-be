@@ -102,7 +102,7 @@ pipeline {
       steps {
         script {
             // dir('server') {
-            dockerImageBE = docker.build registry + "devops-sample-app-be" + ":$BUILD_NUMBER"
+            dockerImageBE = docker.build registry + "devops-sample-app-be" + ":$env.GIT_COMMIT.take(7)"
             // } 
         }
       }
@@ -141,7 +141,7 @@ pipeline {
         always { 
             //Remove Unused docker images
             // bat "docker rmi ${registry}devops-sample-app-ui:$BUILD_NUMBER"
-            bat "docker rmi ${registry}devops-sample-app-be:$BUILD_NUMBER"
+            bat "docker rmi ${registry}devops-sample-app-be:$env.GIT_COMMIT.take(7)"
         }
         success {
             echo "=============================================="
